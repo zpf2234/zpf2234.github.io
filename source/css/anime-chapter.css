@@ -1,0 +1,91 @@
+/* A separate opening composition, enabled only by the anime style switch. */
+.anime-only,.anime-poetry,.anime-rain { display:none; }
+html[data-blog-style=anime] .anime-only { display:inline; }
+html[data-blog-style=anime] .journal-only { display:none; }
+/* These are block-level copy elements in the opening; keep them hidden in journal mode
+   and restore their intended layout when the anime chapter is active. */
+.greeting.anime-only,.hero-description.anime-only { display:none; }
+html[data-blog-style=anime] .greeting.anime-only { display:block; }
+html[data-blog-style=anime] .hero-description.anime-only { display:block; }
+html[data-blog-style=anime] .journal-page .masthead { position:absolute; inset:0 0 auto; width:100%; max-width:1440px; color:#fff1dd; }
+html[data-blog-style=anime] .journal-page .hero-scene { display:block; max-width:none; min-height:740px; height:100svh; padding:0; overflow:hidden; }
+html[data-blog-style=anime] .journal-page .hero-scene::after { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(90deg,#22162370,transparent 62%),linear-gradient(0deg,#211d2a 0%,#211d2a33 28%,transparent 58%); }
+html[data-blog-style=anime] .journal-page .ambient-wash { inset:0; background:radial-gradient(ellipse at 78% 18%,#ffe0ad29,transparent 55%); }
+html[data-blog-style=anime] .journal-page .hello-stage { display:none; }
+html[data-blog-style=anime] .journal-page .hero-copy { position:absolute; left:max(var(--gutter),calc((100% - 1248px)/2)); bottom:15%; width:58%; max-width:680px; animation:anime-copy-in 1s ease both; }
+html[data-blog-style=anime] .journal-page .hero-copy h1 { font-family:'Songti SC','Noto Serif CJK SC',SimSun,serif; font-size:clamp(46px,5.5vw,84px); font-weight:400; letter-spacing:.035em; line-height:1.35; color:#fff8e9; }
+html[data-blog-style=anime] .journal-page .hero-copy h1 em { color:#ffd99d; font-style:normal; }
+html[data-blog-style=anime] .journal-page .greeting { font-size:12px; letter-spacing:.22em; margin-bottom:23px; color:#f7d9b3; }
+html[data-blog-style=anime] .journal-page .hero-description { margin-top:22px; color:#f6e4d6; font-size:14px; line-height:2; }
+html[data-blog-style=anime] .journal-page .explore-button { margin-top:25px; padding:13px 25px; border-radius:7px; gap:42px; }
+html[data-blog-style=anime] .journal-page .hero-bottom { bottom:27px; border-top-color:#ffdda238; color:#f4d9b4; }
+html[data-blog-style=anime] .journal-page .motion-toggle { top:124px; }
+html[data-blog-style=anime] .anime-poetry { display:block; position:absolute; z-index:1; right:max(9%,calc((100% - 1150px)/2)); top:23%; color:#fff6e5; text-shadow:0 2px 22px #301827,0 1px 3px #26152c; }
+.anime-poetry blockquote { position:relative; margin:0; display:flex; flex-direction:row-reverse; align-items:flex-start; gap:23px; font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif CJK JP',SimSun,serif; font-size:clamp(22px,2.2vw,32px); font-weight:400; letter-spacing:.22em; line-height:1.6; }
+.anime-poetry blockquote span { writing-mode:vertical-rl; animation:poem-breathe 12s ease-in-out infinite; }
+.anime-poetry blockquote span:nth-child(2) { padding-top:48px; animation-delay:-4s; }
+.anime-poetry blockquote span:nth-child(3) { padding-top:88px; animation-delay:-8s; }
+.poem-source { margin-top:28px; font-size:10px; letter-spacing:.1em; opacity:.8; text-align:right; }
+.poem-source a { border-bottom:1px solid #fff3; padding-bottom:4px; }
+.poem-ghost { position:absolute; font-family:'Yu Mincho',SimSun,serif; font-size:clamp(180px,21vw,330px); line-height:1; top:35px; left:-100px; color:#ffe2b6; opacity:.075; text-shadow:none; pointer-events:none; animation:poem-memory 16s ease-in-out infinite; }
+.poem-card { position:relative; }
+.poem-card-heart { width:min(300px,42vw); margin-top:34px; margin-left:-16px; opacity:.9; }
+.poem-card-heart .poem-ghost { top:-32px; left:-70px; font-size:clamp(130px,14vw,220px); opacity:.055; }
+.anime-poetry .poem-card-heart .poem-riddle { display:block; margin:0; font-size:clamp(11px,1.12vw,15px); line-height:1.75; letter-spacing:.12em; }
+.anime-poetry .poem-card-heart .poem-riddle span { display:block; padding:0!important; writing-mode:horizontal-tb; animation:poem-riddle-breathe 15s ease-in-out infinite; }
+.anime-poetry .poem-card-heart .poem-riddle span:nth-child(2) { animation-delay:-2s; }
+.anime-poetry .poem-card-heart .poem-riddle span:nth-child(3) { animation-delay:-4s; }
+.anime-poetry .poem-card-heart .poem-riddle span:nth-child(4) { animation-delay:-6s; }
+.anime-poetry .poem-card-heart .poem-riddle span:nth-child(5) { animation-delay:-8s; }
+.anime-poetry .poem-card-heart .poem-riddle span:nth-child(6) { animation-delay:-10s; }
+.poem-card-heart .poem-source { margin-top:14px; text-align:left; }
+html[data-blog-style=anime] .anime-rain { display:block; position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+.anime-rain i { position:absolute; top:-20%; width:1px; height:110px; background:linear-gradient(transparent,#ffe2b65e,transparent); transform:rotate(15deg); animation:poem-rainfall 7s linear infinite; }
+.anime-rain i:nth-child(1) { left:8%; animation-delay:-3s; }.anime-rain i:nth-child(2) { left:22%; animation-delay:-5s; height:70px; }.anime-rain i:nth-child(3) { left:37%; animation-delay:-1s; }.anime-rain i:nth-child(4) { left:49%; animation-delay:-6s; height:55px; }.anime-rain i:nth-child(5) { left:62%; animation-delay:-2s; }.anime-rain i:nth-child(6) { left:73%; animation-delay:-4s; height:75px; }.anime-rain i:nth-child(7) { left:88%; animation-delay:-.5s; }.anime-rain i:nth-child(8) { left:97%; animation-delay:-5.8s; height:60px; }
+/* Film-strip article rows replace the journal's three illustrated cards. */
+html[data-blog-style=anime] .journal-page .notes-scene { padding-top:50px; }
+html[data-blog-style=anime] .journal-page .notes-layout { grid-template-columns:minmax(0,1fr) 285px; gap:35px; }
+html[data-blog-style=anime] .journal-page .section-heading h2 { font-family:'Songti SC',SimSun,serif; font-size:38px; letter-spacing:.08em; }
+html[data-blog-style=anime] .journal-page .post-grid { grid-template-columns:1fr; gap:17px; }
+html[data-blog-style=anime] .journal-page .post-card { display:grid; grid-template-columns:35% minmax(0,1fr); border-radius:8px; min-height:156px; }
+html[data-blog-style=anime] .journal-page .post-art { height:100%; min-height:156px; background-size:cover; background-position:center; filter:none; }
+html[data-blog-style=anime] .journal-page .post-art-0 { background-image:url('/img/orihime-main.jpg'); background-position:55% 40%; }
+html[data-blog-style=anime] .journal-page .post-art-1 { background-image:url('/img/covers/light-closeup.jpg'); }
+html[data-blog-style=anime] .journal-page .post-art-2 { background-image:url('/img/orihime-flowers.jpg'); }
+html[data-blog-style=anime] .journal-page .art-shape,html[data-blog-style=anime] .journal-page .art-symbol { display:none; }
+html[data-blog-style=anime] .journal-page .post-copy { align-self:center; padding:24px 27px; min-height:0; }
+html[data-blog-style=anime] .journal-page .post-copy h3 { font-size:19px; font-family:'Songti SC',SimSun,serif; letter-spacing:.03em; margin:12px 10px 10px 0; }
+html[data-blog-style=anime] .journal-page .post-copy time { color:#dec9b3; font-size:12px; }
+html[data-blog-style=anime] .journal-page .post-category { color:#f0cfa9; font-size:10px; letter-spacing:.16em; }
+html[data-blog-style=anime] .journal-page .category-dock a { border-radius:5px; }
+html[data-blog-style=anime] .journal-page .journal-aside { position:sticky; top:28px; }
+html[data-blog-style=anime] .journal-page .music-widget { border-radius:12px; }
+html[data-blog-style=anime] .journal-page .interest-scene { position:relative; display:flex; min-height:420px; padding:55px 7%; border-radius:12px; isolation:isolate; background:linear-gradient(90deg,#251b2af5 5%,#251b2ab8 52%,#251b2a44),url('/img/orihime-flowers.jpg') center/cover; }
+html[data-blog-style=anime] .journal-page .interest-visual { display:none; }
+html[data-blog-style=anime] .journal-page .life-copy { position:relative; z-index:1; }
+html[data-blog-style=anime] .journal-page .about-signature { font-size:66px; }
+html[data-blog-style=anime] .journal-page.motion-paused .anime-poetry *,html[data-blog-style=anime] .journal-page.motion-paused .anime-rain i { animation-play-state:paused; }
+@keyframes anime-copy-in { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+@keyframes poem-breathe { 0%,100% { opacity:.75; transform:translateY(0); } 50% { opacity:1; transform:translateY(-9px); } }
+@keyframes poem-memory { 0%,100% { opacity:.04; transform:translateY(15px); } 50% { opacity:.11; transform:translateY(-12px); } }
+@keyframes poem-riddle-breathe { 0%,100% { opacity:.42; transform:translateX(0); } 50% { opacity:.9; transform:translateX(-5px); } }
+@keyframes poem-rainfall { from { transform:translate(50px,-100px) rotate(15deg); opacity:0; } 15%,70% { opacity:.55; } to { transform:translate(-110px,110vh) rotate(15deg); opacity:0; } }
+@media(max-width:900px) { html[data-blog-style=anime] .journal-page .notes-layout { grid-template-columns:minmax(0,1fr) 240px; gap:20px; }.anime-poetry blockquote { gap:17px; }html[data-blog-style=anime] .journal-page .post-copy { padding:18px; }html[data-blog-style=anime] .journal-page .post-copy h3 { font-size:17px; } }
+@media(max-width:600px) {
+  html[data-blog-style=anime] .journal-page .hero-scene { min-height:760px; height:100svh; }
+  html[data-blog-style=anime] .journal-page .hero-copy { left:24px; bottom:14%; width:calc(100% - 48px); }
+  html[data-blog-style=anime] .journal-page .hero-copy h1 { font-size:43px; line-height:1.35; }
+  html[data-blog-style=anime] .journal-page .greeting { font-size:10px; margin-bottom:15px; }
+  html[data-blog-style=anime] .journal-page .hero-description { font-size:12px; margin-top:15px; }
+  html[data-blog-style=anime] .journal-page .explore-button { margin-top:18px; padding:11px 20px; }
+  html[data-blog-style=anime] .anime-poetry { top:113px; right:30px; }
+  .anime-poetry blockquote { font-size:18px; gap:15px; letter-spacing:.14em; }.anime-poetry blockquote span:nth-child(2) { padding-top:20px; }.anime-poetry blockquote span:nth-child(3) { padding-top:40px; }.poem-source { font-size:9px; margin-top:14px; }.poem-ghost { font-size:180px; left:-58px; top:0; }.poem-card-heart { width:245px; margin-top:24px; margin-left:-10px; }.anime-poetry .poem-card-heart .poem-riddle { font-size:10px; line-height:1.72; letter-spacing:.08em; }.poem-card-heart .poem-ghost { font-size:140px; left:-40px; top:-24px; }
+  html[data-blog-style=anime] .journal-page .motion-toggle { top:100px; left:24px; right:auto; }
+  html[data-blog-style=anime] .journal-page .notes-layout { grid-template-columns:1fr; gap:24px; }
+  html[data-blog-style=anime] .journal-page .journal-aside { position:static; display:block; }
+  html[data-blog-style=anime] .journal-page .post-card { grid-template-columns:34% minmax(0,1fr); min-height:135px; }
+  html[data-blog-style=anime] .journal-page .post-art { min-height:135px; }
+  html[data-blog-style=anime] .journal-page .post-copy { padding:17px; }html[data-blog-style=anime] .journal-page .post-copy h3 { font-size:16px; }
+  html[data-blog-style=anime] .journal-page .section-heading h2 { font-size:30px; }html[data-blog-style=anime] .journal-page .interest-scene { min-height:350px; padding:35px 25px; }
+}
+@media(prefers-reduced-motion:reduce) { .anime-poetry *,.anime-rain i,html[data-blog-style=anime] .journal-page .hero-copy { animation:none!important; } }

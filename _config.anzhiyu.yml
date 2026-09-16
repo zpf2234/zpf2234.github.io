@@ -1,0 +1,255 @@
+menu:
+  文章: 
+    全部笔记: /notes/ || anzhiyu-icon-book
+    文章归档: /archives/ || anzhiyu-icon-box-archive
+    分类: /categories/ || anzhiyu-icon-shapes
+    标签: /tags/ || anzhiyu-icon-tags
+  关于:
+    关于 boki: /about/ || anzhiyu-icon-paper-plane
+  站点:
+    GitHub 主页: https://github.com/zpf2234 || anzhiyu-icon-github
+    友链: /link/ || anzhiyu-icon-link
+
+social:
+  GitHub: https://github.com/zpf2234 || anzhiyu-icon-github
+
+highlight_theme: darker
+highlight_copy: true
+highlight_lang: true
+highlight_shrink: false
+highlight_height_limit: 360
+
+copy:
+  enable: true
+  copyright:
+    enable: false
+
+local_search:
+  enable: true
+  preload: true
+
+favicon: /img/boki-mark.svg
+avatar:
+  img: /img/boki-mark.svg
+  effect: true
+
+disable_top_img: false
+index_img: "background: url(/img/journal-cover.svg) center 28% / cover no-repeat"
+default_top_img: /img/journal-cover.svg
+
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  position: left
+  default_cover:
+    - /img/journal-cover.svg
+    - /img/journal-cover.svg
+    - /img/journal-cover.svg
+    - /img/journal-cover.svg
+    - /img/journal-cover.svg
+
+error_404:
+  enable: true
+  subtitle: "这页暂时走远了，不如回首页坐坐。"
+  background: /img/journal-cover.svg
+
+post_meta:
+  page:
+    date_type: created
+    date_format: simple
+    categories: true
+    tags: true
+    label: false
+  post:
+    date_type: both
+    date_format: date
+    categories: true
+    tags: true
+    label: true
+
+index_post_content:
+  method: 3
+  length: 220
+
+wordcount:
+  enable: true
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
+
+post_copyright:
+  enable: true
+  decode: false
+  location: boki 的技术站
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+related_post:
+  enable: true
+  limit: 6
+
+comments:
+  use:
+  text: true
+  lazyload: false
+  count: false
+
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  card_author:
+    enable: true
+    description: "平时写前端，偶尔折腾 AI。这里是工作记录，也有一些看番时顺手记下的东西。"
+    name_link: /
+  card_announcement:
+    enable: true
+    content: "最近在整理 Hexo 博客，也在补几篇旧笔记。"
+  card_recent_post:
+    enable: true
+    limit: 5
+  card_categories:
+    enable: true
+    limit: 8
+    expand: true
+  card_tags:
+    enable: true
+    limit: 40
+  card_archives:
+    enable: true
+    type: monthly
+    limit: 8
+  card_webinfo:
+    enable: false
+    post_count: true
+
+busuanzi:
+  site_uv: false
+  site_pv: false
+  page_pv: false
+
+runtimeshow:
+  enable: false
+  publish_date: 8/23/2026 00:00:00
+
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: 1
+
+linkPageTop:
+  enable: true
+  title: 和喜欢写东西的人互相串门
+  addFriendPlaceholder: "昵称：\n网站地址：\n头像图片 URL：\n描述："
+
+readmode: true
+centerConsole:
+  enable: false
+  card_tags:
+    enable: true
+  card_archives:
+    enable: true
+
+fancybox: true
+lazyload:
+  enable: true
+  field: site
+  blur: true
+  progressive: true
+
+note:
+  style: flat
+  icons: true
+  border_radius: 6
+
+pjax:
+  enable: false
+
+nav_music:
+  enable: false
+
+aplayerInject:
+  enable: false
+
+sharejs:
+  enable: false
+
+newest_comments:
+  enable: false
+
+post_head_ai_description:
+  enable: false
+
+preloader:
+  enable: false
+  source: 3
+  avatar: /img/boki-mark.svg
+
+home_top:
+  enable: true
+  timemode: date
+  title: "boki 的技术站"
+  subTitle: "前端、AI、看番，想到什么记什么。"
+  siteText: "boki"
+  default_descr: "写过的东西先放这里。"
+  category:
+    - name: 技术焚决
+      path: /categories/技术焚决/
+      shadow: var(--anzhiyu-shadow-blue)
+      class: blue
+      icon: anzhiyu-icon-code
+    - name: 个人小故事
+      path: /categories/个人小故事/
+      shadow: var(--anzhiyu-shadow-red)
+      class: red
+      icon: anzhiyu-icon-book
+    - name: 爱好
+      path: /categories/爱好/
+      shadow: var(--anzhiyu-shadow-green)
+      class: green
+      icon: anzhiyu-icon-heart
+  banner:
+    tips: "留一点好奇"
+    title: "慢慢生长"
+    image: /img/journal-cover.svg
+    link: /about/
+
+universe:
+  enable: false
+
+bubble:
+  enable: false
+
+console:
+  enable: false
+
+diytitle:
+  enable: false
+  leaveTitle: "w(ﾟДﾟ)w 先别走呀！"
+  backTitle: "♪(^∇^*)欢迎回来！"
+
+peoplecanvas:
+  enable: false
+
+dynamicEffect:
+  postTopWave: false
+  postTopRollZoomInfo: false
+
+CDN:
+  internal_provider: local
+  third_party_provider: jsdelivr
+  version: true
+
+inject:
+  head:
+    - <script src="/js/blog-style.js"></script>
+    - <link rel="stylesheet" href="/css/blog-custom.css">
+    - <link rel="stylesheet" href="/css/liquid-glass.css">
+    - <link rel="stylesheet" href="/css/journey-reading.css">
+    - <link rel="stylesheet" href="/css/blog-style.css">
+  bottom:
+    - <script src="/js/site-enhance.js"></script>
+    - <script src="/js/liquid-glass.js"></script>

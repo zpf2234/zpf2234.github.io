@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">井上织姬主题占位 Banner</title>
+  <desc id="desc">等待替换为用户提供的二次元素材</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171132"/><stop offset=".5" stop-color="#513a86"/><stop offset="1" stop-color="#f099ae"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#ffe9f0" stop-opacity=".92"/><stop offset="1" stop-color="#ffe9f0" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1170" cy="230" r="370" fill="url(#glow)"/>
+  <path d="M0 780C260 600 410 650 650 800S1070 960 1600 680V900H0Z" fill="#100d23" opacity=".78"/>
+  <g fill="none" stroke="#ffe5ef" stroke-opacity=".5">
+    <circle cx="1210" cy="260" r="170"/><circle cx="1210" cy="260" r="235"/><circle cx="1210" cy="260" r="300"/>
+  </g>
+  <g fill="#fff5fb" opacity=".85"><circle cx="260" cy="168" r="4"/><circle cx="430" cy="320" r="3"/><circle cx="820" cy="140" r="5"/><circle cx="1370" cy="470" r="4"/><circle cx="1490" cy="190" r="3"/></g>
+  <g transform="translate(845 135)">
+    <path d="M122 390C42 350 35 215 104 95C156 4 302-22 392 57C468 124 467 290 388 389Z" fill="#df7c4e"/>
+    <path d="M146 169C171 82 294 62 372 140L404 338L341 292L300 151L220 222L158 316Z" fill="#f4a466"/>
+    <ellipse cx="255" cy="225" rx="94" ry="116" fill="#ffd6c8"/>
+    <path d="M178 215C194 166 234 135 286 139C332 143 360 167 372 210L335 183L294 201L246 178L201 214Z" fill="#e77e50"/>
+    <ellipse cx="224" cy="242" rx="12" ry="18" fill="#4f3770"/><ellipse cx="291" cy="242" rx="12" ry="18" fill="#4f3770"/>
+    <path d="M202 367L155 424L376 424L324 366Z" fill="#f0f3ff"/>
+    <path d="M165 414L95 760L440 760L357 414Z" fill="#7e68c9"/>
+    <path d="M238 410L284 410L317 494L256 544L205 492Z" fill="#f48aa8"/>
+    <path d="M158 445L74 560M363 445L458 562" stroke="#f0f3ff" stroke-width="40" stroke-linecap="round"/>
+  </g>
+  <text x="90" y="770" fill="#fff5fb" font-family="sans-serif" font-size="27" letter-spacing="5">boki 的技术站</text>
+</svg>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef1e9">
+  <title><%= blog.title %> — 留一点好奇，给日常</title>
+  <meta name="description" content="<%= blog.description %>">
+  <meta name="author" content="<%= blog.author || 'boki' %>">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="<%= blog.title %>">
+  <meta property="og:title" content="<%= blog.title %> — 留一点好奇，给日常">
+  <meta property="og:description" content="<%= blog.description %>">
+  <meta property="og:url" content="<%= blog.url %>/">
+  <meta property="og:image" content="<%= blog.url %>/img/journal-cover.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= blog.title %> — 留一点好奇，给日常">
+  <meta name="twitter:description" content="<%= blog.description %>">
+  <meta name="twitter:image" content="<%= blog.url %>/img/journal-cover.svg">
+  <link rel="alternate" type="application/atom+xml" title="<%= blog.title %> Atom Feed" href="/atom.xml">
+  <link rel="canonical" href="<%= blog.url %>/">
+  <link rel="icon" href="/img/boki-mark.svg" type="image/svg+xml">
+  <script src="/js/blog-style.js"></script>
+  <link rel="stylesheet" href="/css/liquid-glass.css">
+  <link rel="stylesheet" href="/css/journal.css">
+  <link rel="stylesheet" href="/css/blog-style.css">
+  <link rel="stylesheet" href="/css/music-player.css">
+  <link rel="stylesheet" href="/css/journal-eggs.css">
+  <link rel="stylesheet" href="/css/anime-chapter.css">
+  <script defer src="/js/journey.js"></script>
+  <script defer src="/js/liquid-glass.js"></script>
+  <script defer src="/js/journey-music.js"></script>
+  <script defer src="/js/music-lyrics.js"></script>
+  <script defer src="/js/journal.js"></script>
+  <script defer src="/js/journal-eggs.js"></script>
+</head>
+<body class="journal-page editorial-page">
+  <div class="lyric-flow" aria-hidden="true"><div class="lyric-flow-track"></div><div class="lyric-flow-now"><span>NOW PLAYING · 螺旋</span><strong class="lyric-flow-now-text"></strong></div></div>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></symbol>
+    <symbol id="icon-note" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20 5c-3-3-7-1-8 1-1-2-5-4-8-1s-1 6 1 8l7 7 7-7c2-2 4-5 1-8Z"/></symbol>
+    <symbol id="icon-person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2z"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="m9 20 1-4m5 4-1-4M6 21h12"/></symbol>
+    <symbol id="icon-cup" viewBox="0 0 24 24"><path d="M4 8h13v6a6 6 0 0 1-12 0V8Zm13 1h2a3 3 0 0 1 0 6h-2M3 21h17M8 2v3m5-3v3"/></symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24"><path d="M9 17V5l12-2v12M9 9l12-2"/><ellipse cx="6" cy="18" rx="3" ry="3"/><ellipse cx="18" cy="16" rx="3" ry="3"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M9 5v14M16 5v14"/></symbol>
+    <symbol id="icon-volume" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v6h16v-6"/></symbol>
+    <symbol id="icon-restart" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 0 5M4 4v6h6"/></symbol>
+    <symbol id="icon-prev" viewBox="0 0 24 24"><path d="M5 5v14m14-14L8 12l11 7Z"/></symbol>
+    <symbol id="icon-next" viewBox="0 0 24 24"><path d="M19 5v14M5 5l11 7-11 7Z"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#notes">跳到文章</a>
+  <header class="masthead">
+    <a class="site-identity" href="#begin" aria-label="boki 首页"><span class="brand">b.</span><span class="brand-name">boki</span></a>
+    <nav class="nav-pill" aria-label="主导航">
+      <a href="#begin" aria-current="location">首页</a><a href="#notes">随记</a><a href="#interests">喜欢</a><a href="#about">关于</a>
+    </nav>
+    <a class="github-pill" href="https://github.com/zpf2234" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </header>
+  <main>
+    <section class="hero-scene" id="begin" aria-labelledby="hero-title" data-scene="01">
+      <div class="ambient-wash" aria-hidden="true"></div>
+      <div class="hero-night" aria-hidden="true"><div class="night-aurora"></div><div class="night-stars"></div></div>
+      <div class="anime-rain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="ambient-meteors" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="anime-poetry" lang="ja">
+        <div class="poem-card poem-card-rain">
+          <span class="poem-ghost" aria-hidden="true">雨</span>
+          <blockquote><span>もし</span><span>わたしが</span><span>雨だったなら</span></blockquote>
+          <p class="poem-source"><a href="https://ciatr.jp/topics/322483" target="_blank" rel="noopener noreferrer">久保帯人 · BLEACH 3</a></p>
+        </div>
+        <div class="poem-card poem-card-heart">
+          <span class="poem-ghost" aria-hidden="true">心</span>
+          <blockquote class="poem-riddle"><span>私達</span><span>一つとして　混じりあうものはない</span><span>二つとして　同じ貌をしていない</span><span>三つ目の　瞳を持たぬばかりに</span><span>四つ目の　方角に希望はない</span><span>五つ目は　心臓の場所にある</span></blockquote>
+          <p class="poem-source"><a href="https://www.shueisha.co.jp/books/items/contents.html?isbn=978-4-08-874339-4" target="_blank" rel="noopener noreferrer">久保帯人 · BLEACH 27</a></p>
+        </div>
+      </div>
+      <div class="hero-copy">
+        <p class="greeting anime-only"><span></span><span>井上織姫 / ORIHIME</span></p>
+        <h1 id="hero-title"><span class="journal-only">Stay curious.<br><em>Live softly.</em></span><span class="anime-only">把喜欢，<br><em>留在这一刻。</em></span></h1>
+        <p class="hero-description anime-only">那些不想忘记的画面，<br>和故事之外的每一天。</p>
+        <a class="explore-button liquid-glass" href="#notes">探索</a>
+      </div>
+      <div class="hello-stage">
+        <div class="orb-parallax" aria-hidden="true"><pre class="code-field"><code><span>const quiet = true;</span>
+<span>const notes = [];</span>
+<span>while (curious) {</span>
+<span>  notes.push(today);</span>
+<span>  breathe();</span>
+<span>}</span></code></pre><div class="glass-orb"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div></div>
+        <button class="sun-seed" type="button" aria-label="收集一束光" title="点一下，收集一束光"></button>
+        <div class="studio-word-wrap">
+          <button class="studio-word" type="button" aria-label="切换为暮色氛围" aria-pressed="false" title="轻触，换一种光线">
+          <svg viewBox="0 0 670 280" aria-hidden="true" class="glass-lettering">
+            <defs>
+              <path id="hello-tube" d="M70 214 C88 165 151 37 127 27 C87 8 49 238 92 209 C117 190 116 133 146 144 C173 153 125 221 175 220 C225 218 258 169 231 146 C207 127 182 173 194 200 C210 236 258 215 278 182 C307 126 352 29 323 25 C287 18 248 220 292 222 C333 219 374 118 396 54 C413 7 374 5 363 51 C343 106 315 225 365 224 C387 223 403 207 421 180 C450 135 504 130 513 160 C527 204 466 238 438 214 C403 180 464 129 513 160 C544 174 563 170 587 163"/>
+              <linearGradient id="tube-body" x1="0" y1="0" x2=".4" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#badff5"/><stop offset=".2" stop-color="#5f99cd"/><stop offset=".48" stop-color="#83b4d5"/><stop offset=".69" stop-color="#ccdfeb"/><stop offset=".86" stop-color="#7da8c4"/><stop offset="1" stop-color="#bbd8e7"/></linearGradient>
+              <linearGradient id="tube-shine" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset=".28" stop-color="#ccefff" stop-opacity=".5"/><stop offset=".58" stop-color="#f7fbff" stop-opacity="0"/><stop offset=".83" stop-color="#ffffff" stop-opacity=".65"/><stop offset="1" stop-color="#b7dff6" stop-opacity=".15"/></linearGradient>
+              <filter id="tube-shadow" x="-20%" y="-35%" width="145%" height="175%"><feGaussianBlur stdDeviation="7"/></filter>
+              <filter id="tube-soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1.7"/></filter>
+            </defs>
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <use href="#hello-tube" stroke="#386384" stroke-width="38" opacity=".22" transform="translate(10 19)" filter="url(#tube-shadow)"/>
+              <use href="#hello-tube" stroke="#477caa" stroke-width="41" opacity=".5" transform="translate(4 5)"/>
+              <use href="#hello-tube" stroke="url(#tube-body)" stroke-width="39" opacity=".91"/>
+              <use href="#hello-tube" stroke="#d5eaf4" stroke-width="28" opacity=".2" transform="translate(-2 -2)"/>
+              <use href="#hello-tube" stroke="url(#tube-shine)" stroke-width="8" transform="translate(-7 -8)" filter="url(#tube-soft)"/>
+              <use href="#hello-tube" stroke="url(#tube-shine)" stroke-width="2" opacity=".9" transform="translate(-11 -11)"/>
+            </g>
+          </svg>
+          </button>
+        </div>
+      </div>
+      <button class="motion-toggle" type="button" aria-pressed="false" hidden aria-label="暂停动效"><span aria-hidden="true">Ⅱ</span></button>
+      <div class="egg-effects" aria-hidden="true"></div>
+      <p class="egg-message" role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+
+    <section class="notes-scene content-section" id="notes" aria-labelledby="notes-title" data-scene="02">
+      <div class="section-heading reveal"><div><p class="section-label"><span class="journal-only">THE JOURNAL</span><span class="anime-only">MEMORY FRAGMENTS</span></p><h2 id="notes-title"><span class="journal-only">随记</span><span class="anime-only">记忆的切片。</span></h2></div><a class="text-link" href="/notes/">全部随记</a></div>
+      <nav class="category-dock" aria-label="文章分类">
+        <% categories.forEach(function (category) { %><a href="/<%= category.path %>"><%= category.name.includes('技术') ? '技术与探索' : category.name.includes('爱好') ? '喜欢的世界' : category.name.includes('故事') ? '日常碎片' : category.name %></a><% }); %>
+      </nav>
+      <div class="notes-layout">
+        <div class="post-grid">
+          <% posts.slice(0, 3).forEach(function (post, index) { %>
+          <article class="post-card reveal">
+            <div class="post-art post-art-<%= index %>" aria-hidden="true"><span class="art-shape"></span><span class="art-symbol"><%= ['{ }', '*', '〰'][index] %></span></div>
+            <% const categoryNode = post.categories && typeof post.categories.first === 'function' ? post.categories.first() : null; const rawCategory = categoryNode ? categoryNode.name : ''; const postCategory = rawCategory.includes('技术') ? '技术与探索' : rawCategory.includes('爱好') ? '喜欢的世界' : rawCategory.includes('故事') ? '日常碎片' : rawCategory; %>
+            <div class="post-copy"><time datetime="<%= post.date.format('YYYY-MM-DD') %>"><%= dateLabel(post) %></time><% if (postCategory) { %><span class="post-category"><%= postCategory %></span><% } %><h3><a href="<%= postUrl(post) %>"><%= post.title %></a></h3></div>
+          </article>
+          <% }); %>
+        </div>
+        <div class="journal-aside">
+      <aside class="music-widget music-minimal liquid-glass" aria-label="音乐播放器">
+        <div class="music-heading"><svg class="ui-icon"><use href="#icon-music"/></svg><span>听一会儿</span><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+        <div class="music-track"><div class="music-record" aria-hidden="true"><span class="record-label">b.</span></div><div class="music-track-copy"><strong id="music-title">螺旋</strong><span id="music-artist">9Lana · Acoustic Ver.</span><span id="music-status" role="status">点击播放</span></div></div>
+        <div class="music-lyrics-preview" aria-label="当前歌词" aria-live="polite" aria-atomic="true"><span class="music-lyric-prev"></span><strong class="music-lyric-current">点击播放后显示歌词</strong><span class="music-lyric-next"></span></div>
+        <div class="music-controls">
+          <button type="button" class="music-restart" aria-label="从头播放" title="从头播放"><svg class="ui-icon" aria-hidden="true"><use href="#icon-restart"/></svg></button>
+          <button type="button" class="music-prev" aria-label="上一首" title="上一首" disabled><svg class="ui-icon" aria-hidden="true"><use href="#icon-prev"/></svg></button>
+          <button type="button" class="music-play" aria-label="播放音乐" aria-pressed="false"><svg class="ui-icon" aria-hidden="true"><use href="#icon-play"/></svg></button>
+          <button type="button" class="music-next" aria-label="下一首" title="下一首" disabled><svg class="ui-icon" aria-hidden="true"><use href="#icon-next"/></svg></button>
+          <button type="button" class="music-import" aria-label="添加本地音乐" title="添加本地音乐"><svg class="ui-icon" aria-hidden="true"><use href="#icon-upload"/></svg></button>
+        </div>
+        <input class="music-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="音乐进度" disabled>
+        <div class="music-bottom"><span class="music-time">0:00 / 3:53</span><div class="music-volume"><button type="button" class="music-mute" aria-label="静音" aria-pressed="false"><svg class="ui-icon" aria-hidden="true"><use href="#icon-volume"/></svg></button><input type="range" min="0" max="1" value="0.35" step="0.01" aria-label="音量"></div></div>
+        <div class="music-options"><button type="button" class="music-loop" aria-label="播放模式：单曲循环，点击切换">单曲循环</button><select class="music-speed" aria-label="播放速度"><option value="0.75">0.75×</option><option value="1" selected>1× 倍速</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>
+        <button class="music-lyrics-open" type="button" aria-haspopup="dialog">歌词与排版</button>
+        <dialog class="lyrics-dialog" aria-labelledby="lyrics-title">
+          <header class="lyrics-header"><div><p>正在聆听</p><h2 id="lyrics-title">螺旋</h2></div><button type="button" class="lyrics-close" aria-label="关闭歌词页">×</button></header>
+          <div class="lyrics-toolbar">
+            <label>字体<select class="lyrics-font"><option value="sans">简洁黑体</option><option value="serif">雅致宋体</option><option value="kai">手写楷体</option></select></label>
+            <label class="lyrics-size-label">字号 <output class="lyrics-size-value">22</output><input class="lyrics-size" type="range" min="16" max="34" step="1" value="22" aria-label="歌词字号"></label>
+            <button class="lyrics-import" type="button">导入歌词</button>
+          </div>
+          <div class="lyrics-body" tabindex="0" role="region" aria-label="歌词内容"><p class="lyrics-empty">还没有这首歌的歌词。<br><span>导入 LRC 可同步高亮，TXT 可直接阅读。</span></p></div>
+          <footer class="lyrics-footer"><button class="lyrics-play" type="button" aria-label="播放音乐">播放</button><span class="lyrics-clock">0:00 / 3:53</span><label><input class="lyrics-follow" type="checkbox" checked> 自动跟随</label></footer>
+          <p class="lyrics-status" role="status">歌词只在本页使用，不会上传。</p>
+          <input class="lyrics-file" type="file" accept=".lrc,.txt,text/plain" hidden>
+        </dialog>
+        <details class="music-playlist"><summary>播放列表 <span class="music-count">1 首</span></summary><ol class="music-tracks"></ol><p>本地歌曲仅在本页使用，刷新后需重新添加。</p></details>
+        <input class="music-file" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.flac,.aac,.opus" multiple hidden>
+        <audio id="blog-audio" data-src="/music/rasen-acoustic.mp3" data-title="螺旋" data-artist="9Lana · Acoustic Ver." data-lyrics="/music/lyrics/rasen-acoustic.lrc" preload="metadata" loop></audio>
+        <noscript>启用 JavaScript 后即可使用播放器。</noscript>
+      </aside>
+          <p class="aside-note">不急着抵达。<br>也记得看看沿途的风景。<span>Take your time.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="interest-scene content-section" id="interests" aria-labelledby="life-title" data-scene="03">
+      <div class="interest-visual" aria-hidden="true"><span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="flower-heart"></span></div>
+      <div class="life-copy reveal"><p class="section-label">OFF THE SCREEN</p><h2 id="life-title">不必有用，<br><em>喜欢就很好。</em></h2><p>动画、音乐，和生活里偶然遇见的小事。<br>它们不解决问题，但让日子变得具体。</p></div>
+    </section>
+
+    <section class="about-scene content-section" id="about" aria-labelledby="about-title" data-scene="04">
+      <div class="about-main reveal"><p class="section-label">A NOTE FROM ME</p><h2 id="about-title">Hi, I'm <em>boki.</em></h2><p>平时做开发，偶尔折腾 AI。<br>这个小站，是我留给好奇心的一小块地方。</p><a class="text-link" href="/about/">多认识我一点</a></div>
+      <div class="about-signature" aria-hidden="true">Keep<br><em>growing.</em><span>✳</span></div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="footer-brand" href="#begin">boki<span>·</span></a><span>© <%= year %> · 慢慢写，慢慢生长。</span><div><a href="https://github.com/zpf2234" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/link/">友邻</a><a href="#begin">回到顶部</a></div></footer>
+</body>
+</html>

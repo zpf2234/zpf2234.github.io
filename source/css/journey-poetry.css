@@ -1,0 +1,97 @@
+/* Two short, overlapping echoes of the same excerpt, never a full-poem scroll. */
+.poem-scene {
+  position: absolute; inset: 0; z-index: 0; overflow: clip;
+  pointer-events: none; user-select: none;
+  color: #3b6286;
+  -webkit-mask-image: linear-gradient(transparent 6%, #000 20%, #000 66%, transparent 82%);
+  mask-image: linear-gradient(transparent 6%, #000 20%, #000 66%, transparent 82%);
+}
+.poem-parallax {
+  position: absolute; inset: -3%;
+  transform: translate3d(calc(var(--pointer-x) * -10px), calc(var(--pointer-y) * -8px), 0);
+}
+.poem-current, .poem-echo, .poem-rain {
+  position: absolute; margin: 0;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", "Noto Serif JP", serif;
+  font-weight: 400; line-height: 1.5;
+}
+.poem-current {
+  top: 17%; left: 21%; white-space: nowrap;
+  display: flex; align-items: baseline; gap: .42em;
+  font-size: clamp(44px, 5.8vw, 94px); letter-spacing: .08em;
+  opacity: .17; filter: blur(.25px);
+  animation: poem-current 14s linear -2s infinite;
+}
+.poem-current span:nth-child(1) { font-size: .34em; letter-spacing: .2em; align-self: flex-start; margin-top: .2em; }
+.poem-current span:nth-child(2) { font-size: .65em; }
+.poem-current span:nth-child(3) { font-size: 1.1em; }
+.poem-echo {
+  top: 26%; right: 7%; height: 370px;
+  writing-mode: vertical-rl; text-orientation: upright;
+  font-size: clamp(18px, 2.3vw, 32px); letter-spacing: .25em;
+  opacity: .23; animation: poem-echo 11s ease-in-out -4s infinite;
+}
+.poem-echo span { display: block; margin-left: .8em; }
+.poem-echo span:nth-child(1) { padding-top: 1em; font-size: .72em; }
+.poem-echo span:nth-child(2) { padding-top: 2.8em; }
+.poem-echo span:nth-child(3) { padding-top: .7em; }
+.poem-rain {
+  left: 11%; top: 40%; font-size: clamp(140px, 22vw, 310px);
+  color: #5e86a4; opacity: .09;
+  animation: poem-memory 10s ease-in-out -3s infinite;
+}
+.poem-traces { position: absolute; inset: 10% 4% 24%; opacity: .18; }
+.poem-traces i {
+  position: absolute; width: 1px; height: 45px;
+  background: linear-gradient(transparent, #5484a9, transparent);
+  animation: poem-drop 6s linear infinite;
+}
+.poem-traces i:nth-child(1) { left: 19%; top: 2%; animation-delay: -2s; }
+.poem-traces i:nth-child(2) { left: 38%; top: 22%; animation-delay: -7s; }
+.poem-traces i:nth-child(3) { left: 59%; top: 4%; animation-delay: -4s; }
+.poem-traces i:nth-child(4) { left: 77%; top: 15%; animation-delay: -6s; }
+.poem-traces i:nth-child(5) { left: 89%; top: 10%; animation-delay: -1s; }
+/* Preserve readable foregrounds and let the poem appear through the lettering. */
+.studio-page .glass-lettering { opacity: .92; }
+.motion-paused .poem-scene *,
+.poem-scene.is-resting * { animation-play-state: paused !important; }
+@keyframes poem-current {
+  0% { transform: translate3d(9%,14px,0); opacity: 0; }
+  14% { opacity: .24; }
+  44% { opacity: .15; }
+  64% { opacity: .3; }
+  88% { opacity: .13; }
+  100% { transform: translate3d(-28%,-20px,0); opacity: 0; }
+}
+@keyframes poem-echo {
+  0% { transform: translate3d(0,24px,0); opacity: 0; filter: blur(3px); }
+  20% { opacity: .27; filter: blur(0); }
+  46% { opacity: .1; }
+  66% { opacity: .24; filter: blur(.3px); }
+  100% { transform: translate3d(-10px,-52px,0); opacity: 0; filter: blur(3px); }
+}
+@keyframes poem-memory {
+  0%,100% { opacity: 0; transform: translate3d(0,12px,0) scale(.98); filter: blur(5px); }
+  35% { opacity: .1; filter: blur(.5px); }
+  55% { opacity: .035; }
+  75% { opacity: .12; transform: translate3d(12px,-10px,0) scale(1.025); filter: blur(1px); }
+}
+@keyframes poem-drop {
+  0% { transform: translateY(-25px); opacity: 0; }
+  30% { opacity: .7; }
+  100% { transform: translateY(200px); opacity: 0; }
+}
+@media (max-width: 760px) {
+  .poem-current { top: 27%; left: -14%; font-size: 34px; animation-duration: 17s; gap: .35em; }
+  .poem-echo { top: 24%; right: 9%; font-size: 20px; height: 280px; }
+  .poem-rain { left: 8%; top: 44%; font-size: 170px; }
+  .poem-parallax { transform: none; }
+  .poem-traces i:nth-child(n+4) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .poem-scene * { animation: none !important; }
+  .poem-parallax { transform: none; }
+  .poem-current { opacity: .1; }
+  .poem-echo { opacity: .15; filter: none; }
+  .poem-rain, .poem-traces { display: none; }
+}

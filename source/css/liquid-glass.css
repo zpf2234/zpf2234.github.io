@@ -1,0 +1,572 @@
+/* Shared liquid-glass controls.
+ * The light follows the pointer through --liquid-x/--liquid-y, while the
+ * existing theme-toggle icon keeps its own pseudo-elements untouched.
+ */
+:root {
+  --liquid-border: rgba(255, 255, 255, .42);
+  --liquid-highlight: rgba(255, 255, 255, .34);
+  --liquid-shadow: rgba(20, 16, 30, .2);
+}
+
+.liquid-glass {
+  --liquid-x: 50%;
+  --liquid-y: 50%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--liquid-border) !important;
+  background:
+    radial-gradient(circle at var(--liquid-x) var(--liquid-y), rgba(255, 255, 255, .42), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, .3), rgba(255, 255, 255, .08)) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(155%);
+  backdrop-filter: blur(14px) saturate(155%);
+  box-shadow:
+    inset 0 1px 0 var(--liquid-highlight),
+    inset 0 -1px 0 rgba(255, 255, 255, .1),
+    0 10px 28px var(--liquid-shadow) !important;
+  transition: transform .28s cubic-bezier(.2, .8, .2, 1),
+    box-shadow .28s ease,
+    filter .28s ease,
+    background-position .28s ease;
+}
+
+.liquid-glass::before {
+  position: absolute;
+  z-index: -1;
+  inset: -65%;
+  background: linear-gradient(115deg, transparent 43%, rgba(255, 255, 255, .25) 49%, transparent 55%);
+  content: "";
+  opacity: .45;
+  pointer-events: none;
+  transform: translateX(-28%);
+  transition: transform .65s cubic-bezier(.2, .7, .2, 1), opacity .3s ease;
+}
+
+.liquid-glass:hover {
+  filter: saturate(1.12) brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .52),
+    inset 0 -1px 0 rgba(255, 255, 255, .14),
+    0 15px 34px rgba(20, 16, 30, .26) !important;
+}
+
+.liquid-glass:hover::before {
+  opacity: .78;
+  transform: translateX(28%);
+}
+
+.liquid-glass.is-pressed,
+.liquid-glass:active {
+  transform: translateY(0) scale(.975);
+  transition-duration: .12s;
+}
+
+/* Keep the day/night glyphs from the original switch; the switch still gets
+ * the glass surface, border and press response from the shared class. */
+#boki-theme-toggle.liquid-glass {
+  background: var(--boki-toggle-bg, linear-gradient(145deg, #a2e2f4 0%, #82cfe9 68%, #69bddc 100%)) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(145%);
+  backdrop-filter: blur(10px) saturate(145%);
+}
+
+html[data-theme="dark"] #boki-theme-toggle.liquid-glass {
+  --boki-toggle-bg: linear-gradient(145deg, #252735 0%, #171824 72%, #101116 100%);
+}
+
+/* Native controls that do not already have a bespoke surface. */
+#rightside #darkmode.liquid-glass,
+#console .darkmode_switchbutton.liquid-glass,
+#page-header #nav #nav-right #toggle-menu a.liquid-glass,
+#page-header #nav #nav-right .nav-button a.liquid-glass {
+  color: inherit;
+}
+
+/* The custom journey page has a darker, cooler glass tint. */
+.journey-page .liquid-glass,
+body:has(.hero-scene) .liquid-glass {
+  --liquid-border: rgba(229, 249, 255, .46);
+  --liquid-highlight: rgba(237, 252, 255, .38);
+  --liquid-shadow: rgba(0, 25, 40, .28);
+}
+
+body:has(.hero-scene) .liquid-glass:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .58),
+    inset 0 -1px 0 rgba(255, 255, 255, .16),
+    0 16px 36px rgba(0, 25, 40, .34) !important;
+}
+
+/* The journey page uses individual glass chips instead of one large white
+ * capsule, so the three top links read as separate interactive controls. */
+.journey-page .hero-track {
+  margin-right: calc(var(--frame) * -1);
+  margin-left: calc(var(--frame) * -1);
+  margin-bottom: 0;
+}
+
+/* Let the first artwork run behind the header; controls float above it. */
+.journey-page .masthead {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: opacity .42s ease, transform .42s cubic-bezier(.2, .8, .2, 1), visibility 0s linear 0s;
+}
+
+.journey-page .masthead > * {
+  pointer-events: auto;
+}
+
+/* A single tap clears the artwork; a double tap restores the floating chrome. */
+.journey-page.chrome-hidden .masthead {
+  opacity: 0;
+  transform: translateY(-12px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .42s ease, transform .42s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .42s;
+}
+
+.journey-page .hero-track .hero-scene {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #061923;
+  top: 0;
+}
+
+.journey-page .nav-pill {
+  height: auto;
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+}
+
+.journey-page .nav-pill a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 62px;
+  height: 40px;
+  padding: 0 13px;
+  border: 1px solid rgba(229, 249, 255, .34);
+  border-radius: 14px;
+  background: rgba(6, 25, 35, .42);
+  color: #e8f6fb;
+  font-size: 12px;
+  letter-spacing: .06em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 8px 22px rgba(0, 19, 31, .2);
+}
+
+.journey-page .nav-pill a span {
+  display: none;
+}
+
+.journey-page .nav-pill a:hover {
+  background: rgba(32, 201, 237, .2);
+  color: #fff;
+}
+
+.journey-page .github-pill {
+  height: 40px;
+  gap: 12px;
+  padding: 0 16px;
+  border-radius: 14px;
+  background: rgba(6, 25, 35, .46);
+  color: #e8f6fb;
+  font-size: 12px;
+}
+
+.journey-page .github-pill span {
+  font-size: 18px;
+}
+
+/* Replace the old white tab with a small floating glass mark. */
+.journey-page .brand.liquid-glass {
+  position: absolute;
+  top: 17px;
+  width: 72px;
+  height: 72px;
+  padding-top: 4px;
+  border: 1px solid rgba(235, 252, 255, .48) !important;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, .48), transparent 28%),
+    linear-gradient(145deg, rgba(228, 249, 255, .3), rgba(47, 136, 160, .2)) !important;
+  color: #effcff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .58),
+    inset 0 -8px 18px rgba(3, 34, 48, .18),
+    0 12px 28px rgba(0, 17, 29, .3) !important;
+  font-size: 52px;
+  line-height: .94;
+}
+
+.journey-page .brand.liquid-glass > span {
+  color: #20c9ed;
+  font-size: 58px;
+  text-shadow: 0 0 14px rgba(32, 201, 237, .55);
+}
+
+.journey-page .brand.liquid-glass small {
+  color: rgba(239, 252, 255, .82);
+  font-size: 8px;
+}
+
+.journey-page .motion-toggle {
+  border-radius: 14px;
+  background: rgba(6, 25, 35, .62) !important;
+  color: #effcff;
+  letter-spacing: .02em;
+  transition: opacity .42s ease, transform .42s cubic-bezier(.2, .8, .2, 1), visibility 0s linear 0s;
+}
+
+.journey-page.chrome-hidden .motion-toggle {
+  opacity: 0;
+  transform: translateY(-12px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .42s ease, transform .42s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .42s;
+}
+
+/* Use one readable display face for the hero instead of mixing a serif italic
+ * first line with a sans-serif second line. */
+.journey-page .hero-heading h1,
+.journey-page .hero-heading h1 em {
+  font-family: Manrope, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -.06em;
+}
+
+/* The original wash and breathing scale hid too much of the artwork. Keep a
+ * small readability veil while showing more of the full frame. */
+.journey-page .hero-wash {
+  background:
+    linear-gradient(90deg, rgba(241, 250, 253, .05), transparent 58%),
+    linear-gradient(0deg, rgba(241, 250, 253, .12), rgba(241, 250, 253, .02) 58%, transparent 100%);
+}
+
+.journey-page .hero-scene .art-plane {
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  background: #061923;
+}
+
+.journey-page .pointer-light {
+  opacity: .16;
+}
+
+.journey-page .hero-scene::after {
+  opacity: .16;
+}
+
+.journey-page .hero-art {
+  filter: brightness(.72) saturate(1.08) contrast(1.08);
+  animation: orihime-breath-soft 18s ease-in-out infinite alternate;
+}
+
+@keyframes orihime-breath-soft {
+  from { transform: scale(1.015) translate3d(-.25%, -.2%, 0); }
+  to { transform: scale(1.06) translate3d(.35%, .35%, 0); }
+}
+
+.journey-page .latest-card,
+.journey-page .intro-card {
+  border-radius: 18px;
+}
+
+.journey-page .latest-card.liquid-glass {
+  position: absolute;
+  background:
+    radial-gradient(circle at var(--liquid-x) var(--liquid-y), rgba(130, 236, 255, .18), transparent 42%),
+    linear-gradient(135deg, rgba(6, 42, 57, .84), rgba(4, 24, 35, .66)) !important;
+}
+
+.journey-page .intro-card.liquid-glass {
+  position: absolute;
+  background:
+    radial-gradient(circle at var(--liquid-x) var(--liquid-y), rgba(255, 255, 255, .7), transparent 40%),
+    linear-gradient(135deg, rgba(247, 252, 255, .72), rgba(218, 243, 249, .42)) !important;
+}
+
+@media (max-width: 760px) {
+  .journey-page .nav-pill {
+    gap: 4px;
+  }
+
+  .journey-page .nav-pill a {
+    min-width: 0;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 12px;
+  }
+
+  .journey-page .github-pill {
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 12px;
+  }
+
+  .journey-page .brand.liquid-glass {
+    top: 10px;
+    width: 58px;
+    height: 58px;
+    font-size: 43px;
+  }
+
+  .journey-page .brand.liquid-glass > span {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 761px) {
+  /* Let the hero typography and side cards breathe toward the viewport edges. */
+  .journey-page .hero-heading {
+    left: 2.4%;
+    bottom: 8%;
+  }
+
+  .journey-page .latest-card {
+    top: 10%;
+    right: 2.8%;
+  }
+
+  .journey-page .intro-card {
+    right: 2.8%;
+    bottom: 6%;
+  }
+
+  .journey-page .hero-track .hero-scene {
+    height: 100svh;
+    min-height: 100svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass,
+  .liquid-glass::before {
+    transition-duration: 0s !important;
+  }
+}
+
+/* Refined hero side cards: one quiet glass language instead of two competing
+ * surfaces. The pointer glow stays, but the panel itself remains readable on
+ * the moving red background. */
+.journey-page .latest-card.liquid-glass,
+.journey-page .intro-card.liquid-glass {
+  border: 1px solid rgba(224, 249, 255, .22) !important;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at var(--liquid-x) var(--liquid-y), rgba(94, 224, 246, .14), transparent 42%),
+    linear-gradient(145deg, rgba(8, 27, 39, .84), rgba(9, 39, 51, .62)) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  backdrop-filter: blur(18px) saturate(130%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .18),
+    inset 0 -1px 0 rgba(4, 14, 22, .22),
+    0 18px 38px rgba(0, 0, 0, .2) !important;
+  filter: none;
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1),
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+
+.journey-page .latest-card.liquid-glass::after,
+.journey-page .intro-card.liquid-glass::after {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, rgba(67, 218, 242, .9) 45%, transparent);
+  content: "";
+  opacity: .8;
+  pointer-events: none;
+}
+
+.journey-page .latest-card.liquid-glass:hover,
+.journey-page .intro-card.liquid-glass:hover {
+  border-color: rgba(180, 240, 252, .4) !important;
+  filter: none;
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .25),
+    inset 0 -1px 0 rgba(4, 14, 22, .22),
+    0 24px 46px rgba(0, 0, 0, .28) !important;
+}
+
+.journey-page .latest-card {
+  padding: 20px 22px 19px;
+}
+
+.journey-page .card-kicker {
+  padding-bottom: 12px;
+  border-color: rgba(197, 235, 245, .16);
+  font-size: 10px;
+}
+
+.journey-page .latest-card time {
+  margin-top: 14px;
+  color: #b7dbe5;
+}
+
+.journey-page .latest-card h2 {
+  margin-top: 7px;
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+.journey-page .read-note {
+  margin-top: 16px;
+  color: #acd1dc;
+}
+
+.journey-page .intro-card {
+  padding: 22px 24px 20px;
+  color: #effaff;
+}
+
+.journey-page .intro-card p {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.journey-page .intro-card p > span {
+  color: #a7d8e4;
+}
+
+.journey-page .card-action {
+  margin-top: 19px;
+  color: #d7f1f6;
+}
+
+.journey-page .card-action b {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(214, 249, 255, .32);
+  background: rgba(224, 250, 255, .12);
+  color: #f3fdff;
+  font-size: 16px;
+}
+
+@media (max-width: 760px) {
+  .journey-page .latest-card.liquid-glass,
+  .journey-page .intro-card.liquid-glass {
+    border-radius: 16px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .18),
+      0 12px 24px rgba(0, 0, 0, .18) !important;
+  }
+
+  .journey-page .latest-card {
+    padding: 18px 20px;
+  }
+
+  .journey-page .intro-card {
+    padding: 18px 20px;
+  }
+}
+
+/* Quiet chapter rail: a small floating control instead of a heavy rectangle. */
+.journey-page .scene-nav {
+  width: 42px;
+  padding: 9px 5px;
+  border: 1px solid rgba(224, 249, 255, .24);
+  border-radius: 999px;
+  background: rgba(7, 26, 38, .62);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(16px) saturate(135%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .14),
+    0 14px 32px rgba(0, 0, 0, .22);
+}
+
+.journey-page .scene-nav::before {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(201, 239, 247, .28), transparent);
+  content: "";
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.journey-page .scene-nav a {
+  z-index: 1;
+  width: 32px;
+  height: 36px;
+  border-radius: 999px;
+  transition: background .25s ease, transform .25s ease;
+}
+
+.journey-page .scene-nav a:hover,
+.journey-page .scene-nav a:focus-visible {
+  background: rgba(188, 241, 250, .12);
+  outline: none;
+  transform: scale(1.08);
+}
+
+.journey-page .scene-nav i {
+  width: 6px;
+  height: 6px;
+  border: 1px solid rgba(211, 242, 248, .6);
+  border-radius: 50%;
+  background: rgba(181, 216, 225, .42);
+  box-shadow: 0 0 0 3px transparent;
+  transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
+}
+
+.journey-page .scene-nav a[aria-current] {
+  background: rgba(48, 205, 232, .14);
+}
+
+.journey-page .scene-nav a[aria-current] i {
+  border-color: #b7f4ff;
+  background: #2bd3ef;
+  box-shadow: 0 0 0 3px rgba(43, 211, 239, .16), 0 0 14px rgba(43, 211, 239, .45);
+  transform: rotate(45deg) scale(1.22);
+}
+
+.journey-page .scene-nav span {
+  border: 1px solid rgba(224, 249, 255, .18);
+  border-radius: 8px;
+  background: rgba(7, 26, 38, .82);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 760px) {
+  .journey-page .scene-nav {
+    width: auto;
+    padding: 5px 8px;
+    border-radius: 999px;
+  }
+
+  .journey-page .scene-nav::before {
+    top: 50%;
+    right: 20px;
+    bottom: auto;
+    left: 20px;
+    width: auto;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .journey-page .scene-nav a {
+    width: 30px;
+    height: 30px;
+  }
+}

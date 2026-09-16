@@ -1,0 +1,828 @@
+@font-face {
+  font-family: "Boki Manrope";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/manrope-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Boki Manrope";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/manrope-800.ttf') format('truetype');
+}
+
+/* boki 的技术站：只保留少量个人化调整，让 Anzhiyu 的默认布局负责页面结构。 */
+:root {
+  --boki-main: #c76452;
+  --boki-link: #b14d42;
+  --boki-soft: #fff7fa;
+  --boki-ink: #35212a;
+}
+
+body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* Editorial typography for the name: a quiet serif contrast instead of a default title. */
+#site-title,
+#nav #site-name .title,
+.banners-title .banners-title-big:first-child {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .24em;
+  white-space: nowrap;
+}
+
+.boki-brand-mark {
+  color: #fff;
+  font-family: "Bodoni 72", "Didot", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: .045em;
+  text-shadow: 0 3px 18px rgba(22, 7, 12, .34);
+}
+
+.boki-brand-cn {
+  color: rgba(255, 252, 247, .94);
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-shadow: 0 3px 18px rgba(22, 7, 12, .32);
+}
+
+#site-title {
+  letter-spacing: 0;
+}
+
+#site-title .boki-brand-mark {
+  font-size: 1.08em;
+}
+
+#site-title .boki-brand-cn {
+  position: relative;
+  padding-bottom: .15em;
+  font-size: .74em;
+}
+
+#site-title .boki-brand-cn::after {
+  position: absolute;
+  right: .12em;
+  bottom: 0;
+  left: .12em;
+  height: 2px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,211,160,.8), rgba(255,255,255,0));
+  content: "";
+  opacity: .85;
+}
+
+#nav #site-name .title {
+  gap: .18em;
+}
+
+#nav #site-name .boki-brand-mark {
+  font-size: 1.04em;
+}
+
+#nav #site-name .boki-brand-cn {
+  font-size: .78em;
+  letter-spacing: .12em;
+}
+
+.banners-title .banners-title-big:first-child .boki-brand-mark {
+  font-size: 1.04em;
+}
+
+.banners-title .banners-title-big:first-child .boki-brand-cn {
+  font-size: .82em;
+}
+
+#page-header #nav {
+  border-bottom: 1px solid rgba(255, 255, 255, .13);
+  background: linear-gradient(180deg, rgba(19, 8, 15, .2), rgba(19, 8, 15, 0));
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+#page-header #nav #menus .menus_item > .site-page {
+  color: rgba(255, 252, 247, .9);
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+  font-size: .92rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+}
+
+#page-header #nav #nav-right .nav-button a,
+#page-header #nav #nav-right #toggle-menu a {
+  color: rgba(255, 252, 247, .9);
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+#page-header #nav #nav-right .nav-button a:hover,
+#page-header #nav #nav-right #toggle-menu a:hover {
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] {
+  background: #f6f0e9;
+  color: var(--boki-ink);
+}
+
+html[data-theme="dark"] {
+  background: #1d1118;
+}
+
+/* 井上织姬素材接入后，只需替换配置文件里的图片路径。 */
+#page-header.full_page,
+#page-header.not-top-img {
+  background-position: center 28%;
+}
+
+#page-header.full_page::before {
+  background: linear-gradient(90deg, rgba(25, 12, 18, .8), rgba(25, 12, 18, .12));
+}
+
+#site-info .site-title {
+  text-shadow: 0 3px 14px rgba(40, 16, 43, .25);
+}
+
+.avatar-img {
+  object-fit: cover;
+}
+
+.post-content a,
+.page-content a {
+  color: var(--boki-link);
+}
+
+.post-content blockquote {
+  border-left-color: var(--boki-main);
+}
+
+#page-header #site-info .site-title,
+#page-header #site-info .site-subtitle {
+  text-shadow: 0 2px 12px rgba(42, 11, 17, .28);
+}
+
+#todayCard,
+.categoryGroup,
+#recent-posts > .recent-post-item,
+.card-widget {
+  border-radius: 12px;
+}
+
+#todayCard .todayCard-cover,
+#recent-posts > .recent-post-item .post_cover img {
+  object-fit: cover;
+}
+
+img[data-lazy-src="/img/journal-cover.svg"],
+img[src="/img/journal-cover.svg"] {
+  object-position: center 52%;
+}
+
+/* A small boki signature, used where the name appears as a personal mark. */
+#footer-bar .copyright .footer-bar-link[title="boki"],
+#aside-content .author-info__name,
+.banners-title .banners-title-small {
+  position: relative;
+  display: inline-block;
+  width: max-content;
+  color: #cf4f72;
+  background: linear-gradient(105deg, #bc365d 4%, #e87983 52%, #65b9b5 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-decoration: none;
+  transform: rotate(-2deg);
+}
+
+#footer-bar .copyright .footer-bar-link[title="boki"] {
+  margin: 0 .28rem;
+  padding: 0 .08rem .12rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+#footer-bar .copyright .footer-bar-link[title="boki"]::after {
+  position: absolute;
+  right: -.12rem;
+  bottom: 0;
+  left: -.12rem;
+  height: 3px;
+  border-radius: 80% 20% 70% 30%;
+  background: linear-gradient(90deg, rgba(188,54,93,.15), #d95676 45%, #65b9b5 100%);
+  content: "";
+  transform: rotate(-1deg) skewX(-18deg);
+}
+
+#footer-bar .copyright .footer-bar-link[title="boki"]:hover {
+  filter: saturate(1.12) brightness(1.08);
+  transform: rotate(-2deg) translateY(-1px);
+}
+
+html[data-theme="dark"] #footer-bar .copyright .footer-bar-link[title="boki"],
+html[data-theme="dark"] #aside-content .author-info__name,
+html[data-theme="dark"] .banners-title .banners-title-small {
+  background-image: linear-gradient(105deg, #ff7894 4%, #f1a0a5 50%, #85d9d0 96%);
+}
+
+#aside-content .card-info .author-info__description,
+#aside-content .card-announcement {
+  line-height: 1.8;
+}
+
+#page-header.full_page {
+  box-shadow: inset 0 -90px 120px rgba(28, 11, 18, .36);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #page-header.full_page {
+    min-height: 360px;
+  }
+}
+
+/* Day/night control inspired by the supplied reference image. */
+:root {
+  --boki-day-sky: #8fd6ef;
+  --boki-day-sun: #ffd95a;
+  --boki-night-sky: #171824;
+  --boki-night-moon: #f7f0c8;
+}
+
+/* The console control is the main, roomy version. */
+#console .button-group .console-btn-item a.darkmode_switchbutton {
+  position: relative;
+  width: 74px;
+  height: 38px;
+  overflow: hidden;
+  border: 2px solid rgba(42, 39, 50, .16);
+  border-radius: 999px;
+  background: var(--boki-day-sky);
+  box-shadow: inset 0 -2px 0 rgba(37, 89, 109, .12);
+  color: transparent;
+  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+#console .button-group .console-btn-item a.darkmode_switchbutton::before,
+#console .button-group .console-btn-item a.darkmode_switchbutton::after,
+#rightside #darkmode::before,
+#rightside #darkmode::after {
+  position: absolute;
+  display: block;
+  content: "";
+  pointer-events: none;
+}
+
+/* Sun and cloud. */
+#console .button-group .console-btn-item a.darkmode_switchbutton::before {
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--boki-day-sun);
+  box-shadow: 0 0 0 2px rgba(255, 237, 154, .68), 0 2px 7px rgba(110, 77, 10, .2);
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+#console .button-group .console-btn-item a.darkmode_switchbutton::after {
+  left: 13px;
+  bottom: 7px;
+  width: 24px;
+  height: 10px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 8px -5px 0 -2px #fff, 15px 0 0 -3px #fff;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+/* Moon and a small star field. */
+html[data-theme="dark"] #console .button-group .console-btn-item a.darkmode_switchbutton {
+  border-color: rgba(255, 255, 255, .12);
+  background: var(--boki-night-sky);
+  box-shadow: inset 0 -2px 0 rgba(113, 27, 58, .48);
+}
+
+html[data-theme="dark"] #console .button-group .console-btn-item a.darkmode_switchbutton::before {
+  right: auto;
+  left: 7px;
+  background: radial-gradient(circle at 68% 31%, var(--boki-night-sky) 0 7px, transparent 8px), var(--boki-night-moon);
+  box-shadow: none;
+  transform: rotate(-16deg);
+}
+
+html[data-theme="dark"] #console .button-group .console-btn-item a.darkmode_switchbutton::after {
+  left: auto;
+  right: 12px;
+  bottom: auto;
+  top: 10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 11px 5px 0 1px rgba(255,255,255,.88), 18px -3px 0 -1px rgba(255,255,255,.68), 7px 13px 0 -1px rgba(255,255,255,.7);
+  transform: none;
+}
+
+/* Compact right-side version. */
+#rightside #darkmode {
+  position: relative;
+  width: 66px;
+  height: 32px;
+  overflow: hidden;
+  border: 2px solid rgba(42, 39, 50, .16);
+  border-radius: 999px;
+  background: var(--boki-day-sky);
+  color: transparent;
+  transition: background .25s ease, border-color .25s ease;
+}
+
+#rightside #darkmode::before {
+  top: 4px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--boki-day-sun);
+  box-shadow: 0 0 0 2px rgba(255, 237, 154, .68);
+  transition: all .25s ease;
+}
+
+/* Always-visible switch in the top navigation. */
+#page-header #nav #nav-right > #boki-theme-toggle-wrap {
+  display: flex;
+  align-items: center;
+  margin-left: .75rem;
+}
+
+#boki-theme-toggle {
+  position: relative;
+  display: block;
+  width: 58px;
+  height: 28px;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .86);
+  border-radius: 999px;
+  background: linear-gradient(145deg, #a2e2f4 0%, #82cfe9 68%, #69bddc 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.65), inset 0 -2px 3px rgba(38, 92, 112, .2), 0 3px 12px rgba(22, 40, 49, .18);
+  cursor: pointer;
+  transition: background .25s ease, border-color .25s ease, transform .2s ease;
+}
+
+#boki-theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+#boki-theme-toggle::before,
+#boki-theme-toggle::after {
+  position: absolute;
+  display: block;
+  content: "";
+  pointer-events: none;
+}
+
+#boki-theme-toggle::before {
+  top: 3px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--boki-day-sun);
+  box-shadow: 0 0 0 2px rgba(255, 237, 154, .68);
+  transition: all .25s ease;
+}
+
+#boki-theme-toggle::after {
+  left: 7px;
+  bottom: 5px;
+  width: 18px;
+  height: 7px;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 6px -4px 0 -2px #fff, 12px 0 0 -3px #fff;
+  transition: all .25s ease;
+}
+
+html[data-theme="dark"] #boki-theme-toggle {
+  border-color: rgba(255, 255, 255, .28);
+  background: linear-gradient(145deg, #252735 0%, #171824 72%, #101116 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -2px 3px rgba(108, 28, 53, .42), 0 3px 12px rgba(0,0,0,.26);
+}
+
+html[data-theme="dark"] #boki-theme-toggle::before {
+  right: auto;
+  left: 5px;
+  background: radial-gradient(circle at 68% 31%, var(--boki-night-sky) 0 5px, transparent 6px), var(--boki-night-moon);
+  box-shadow: none;
+  transform: rotate(-14deg);
+}
+
+html[data-theme="dark"] #boki-theme-toggle::after {
+  left: auto;
+  right: 8px;
+  bottom: auto;
+  top: 7px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 9px 5px 0 1px rgba(255,255,255,.88), 15px -2px 0 -1px rgba(255,255,255,.68), 5px 11px 0 -1px rgba(255,255,255,.7);
+}
+
+#rightside #darkmode::after {
+  left: 9px;
+  bottom: 6px;
+  width: 20px;
+  height: 8px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 7px -4px 0 -2px #fff, 13px 0 0 -3px #fff;
+  transition: all .25s ease;
+}
+
+html[data-theme="dark"] #rightside #darkmode {
+  border-color: rgba(255, 255, 255, .12);
+  background: var(--boki-night-sky);
+}
+
+html[data-theme="dark"] #rightside #darkmode::before {
+  right: auto;
+  left: 6px;
+  background: radial-gradient(circle at 68% 31%, var(--boki-night-sky) 0 6px, transparent 7px), var(--boki-night-moon);
+  box-shadow: none;
+  transform: rotate(-16deg);
+}
+
+html[data-theme="dark"] #rightside #darkmode::after {
+  left: auto;
+  right: 10px;
+  bottom: auto;
+  top: 8px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 10px 5px 0 1px rgba(255,255,255,.88), 16px -3px 0 -1px rgba(255,255,255,.68), 6px 12px 0 -1px rgba(255,255,255,.7);
+}
+
+/* Keep the compact switch readable in the sidebar while retaining Anzhiyu's layout. */
+#sidebar .darkmode_switchbutton i,
+#rightside #darkmode i,
+#console .darkmode_switchbutton i {
+  opacity: 0;
+}
+
+html[data-theme="dark"] body {
+  --anzhiyu-theme: #e45d69;
+  --anzhiyu-hovertext: #ff8a8f;
+  --anzhiyu-card-bg: #29151e;
+  --anzhiyu-card-bg-op: rgba(41, 21, 30, .88);
+  --anzhiyu-card-border: #4c2632;
+  --anzhiyu-fontcolor: #f1dfe2;
+  --anzhiyu-secondtext: #c79aa5;
+  --anzhiyu-background: #160d13;
+}
+
+@media (max-width: 768px) {
+  #page-header #nav #nav-right > #boki-theme-toggle-wrap {
+    margin-left: .4rem;
+  }
+
+  #boki-theme-toggle {
+    width: 52px;
+    height: 26px;
+  }
+}
+
+/* Final type direction: modern, rounded, and lightly fluid rather than formal serif display. */
+:root {
+  --boki-coral: #f2a08c;
+  --boki-pearl: #fff7ef;
+  --boki-mint: #bce8df;
+}
+
+#site-title,
+#nav #site-name .title,
+.banners-title .banners-title-big:first-child,
+.boki-brand-mark,
+.boki-brand-cn {
+  font-family: "Boki Manrope", "Avenir Next", "SF Pro Display", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-style: normal;
+  font-kerning: normal;
+  text-rendering: geometricPrecision;
+}
+
+.boki-brand-mark {
+  background: linear-gradient(116deg, var(--boki-pearl) 8%, #ffd1bd 48%, var(--boki-mint) 94%);
+  background-size: 150% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  text-shadow: none;
+  transform: skewX(-5deg);
+}
+
+.boki-brand-cn {
+  color: rgba(255, 250, 244, .96);
+  font-weight: 600;
+  letter-spacing: .075em;
+  text-shadow: 0 3px 18px rgba(38, 10, 14, .34);
+}
+
+#site-title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 4.15rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+#site-title .boki-brand-mark {
+  font-size: 1.02em;
+}
+
+#site-title .boki-brand-cn {
+  font-size: .72em;
+  padding-bottom: .2em;
+}
+
+#site-title .boki-brand-cn::after {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(242,160,140,.12), rgba(242,160,140,.82) 48%, rgba(188,232,223,.78));
+}
+
+#nav #site-name .boki-brand-mark {
+  background: linear-gradient(116deg, #fffaf3 10%, #ffd0ba 52%, #c4eee6 94%);
+  background-size: 150% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.02em;
+}
+
+#nav #site-name .boki-brand-cn {
+  color: rgba(255, 250, 244, .93);
+  font-size: .78em;
+  letter-spacing: .09em;
+}
+
+.banners-title .banners-title-big:first-child .boki-brand-mark {
+  background: linear-gradient(116deg, #fffaf3 10%, #ffd0ba 52%, #c4eee6 94%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.banners-title .banners-title-big:first-child .boki-brand-cn {
+  color: rgba(255, 250, 244, .95);
+  font-size: .78em;
+}
+
+#page-header #nav #menus .menus_item > .site-page {
+  font-family: "Boki Manrope", "Avenir Next", "SF Pro Display", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+#boki-theme-toggle {
+  border-color: rgba(255,255,255,.94);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.82), inset 0 -2px 3px rgba(35, 83, 105, .2), 0 4px 16px rgba(32, 20, 27, .22);
+}
+
+#page-header #nav #nav-right > #randomPost_button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #site-title {
+    font-size: 2.7rem;
+  }
+
+  #site-title .boki-brand-cn {
+    letter-spacing: .05em;
+  }
+}
+
+/* Five-entry home navigation: three editorial categories, then two useful destinations. */
+@media screen and (min-width: 1201px) {
+  div#bannerGroup {
+    height: 340px;
+  }
+
+  #bannerGroup #random-banner {
+    height: 54%;
+    margin-bottom: 10px;
+  }
+
+  #bannerGroup .categoryGroup {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: 1fr .72fr;
+    gap: 10px;
+    height: 43%;
+    min-width: 0;
+    align-items: stretch;
+  }
+
+  #bannerGroup .categoryItem {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    margin: 0;
+    transform: none;
+  }
+
+  #bannerGroup .home-primary-entry {
+    grid-column: span 2;
+  }
+
+  #bannerGroup .home-secondary-entry {
+    grid-column: span 3;
+  }
+
+  #bannerGroup a.categoryButton {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 14px;
+    line-height: 1.15;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 9px 20px rgba(46, 27, 31, .14);
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  }
+
+  #bannerGroup a.categoryButton:hover {
+    filter: saturate(1.08) brightness(1.04);
+    transform: translateY(-3px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.34), 0 15px 26px rgba(46, 27, 31, .2);
+  }
+
+  #bannerGroup .categoryButtonText {
+    padding-left: 0;
+    font-family: "Boki Manrope", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: .03em;
+  }
+
+  #bannerGroup .categoryButtonSub {
+    display: block;
+    margin-top: 6px;
+    max-width: 88%;
+    color: rgba(255,255,255,.78);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+
+  #bannerGroup a.categoryButton i {
+    top: auto;
+    right: 8px;
+    bottom: 5px;
+    width: auto;
+    font-size: 2.35rem;
+    opacity: .22;
+    filter: none;
+    transform: rotate(10deg);
+  }
+
+  #bannerGroup a.categoryButton.secondary {
+    background: linear-gradient(135deg, rgba(255,255,255,.76), rgba(255,244,238,.64));
+    border-color: rgba(181, 113, 115, .2);
+    color: #8f4651;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.84), 0 8px 20px rgba(102, 56, 55, .1);
+  }
+
+  #bannerGroup a.categoryButton.secondary .categoryButtonSub {
+    color: rgba(112, 70, 74, .7);
+  }
+
+  #bannerGroup a.categoryButton.secondary i {
+    color: #c35d70;
+    opacity: .28;
+  }
+
+  [data-theme="dark"] #bannerGroup a.categoryButton.secondary {
+    background: linear-gradient(135deg, rgba(62, 29, 39, .94), rgba(35, 22, 30, .94));
+    border-color: rgba(228, 93, 105, .3);
+    color: #f5c3c2;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 22px rgba(0,0,0,.22);
+  }
+
+  [data-theme="dark"] #bannerGroup a.categoryButton.secondary .categoryButtonSub {
+    color: rgba(241, 192, 195, .72);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #bannerGroup .categoryGroup {
+    display: grid !important;
+    grid-template-columns: minmax(210px, 250px);
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    width: 250px;
+    height: 100%;
+    flex: 0 0 250px;
+  }
+
+  #bannerGroup .categoryItem,
+  #bannerGroup .home-primary-entry,
+  #bannerGroup .home-secondary-entry {
+    width: auto;
+    min-width: 0;
+    height: auto;
+    margin: 0;
+  }
+
+  #bannerGroup a.categoryButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 14px;
+    line-height: 1.1;
+  }
+
+  #bannerGroup .categoryButtonText {
+    padding-left: 0;
+  }
+
+  #bannerGroup .categoryButtonSub {
+    display: block;
+    margin-top: 4px;
+    color: rgba(255,255,255,.76);
+    font-size: .65rem;
+  }
+
+  #bannerGroup a.categoryButton i {
+    top: auto;
+    right: 8px;
+    bottom: 6px;
+    width: auto;
+    font-size: 2rem;
+    opacity: .2;
+    filter: none;
+  }
+
+  #bannerGroup a.categoryButton.secondary {
+    background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,244,238,.7));
+    color: #8f4651;
+  }
+
+  #bannerGroup a.categoryButton.secondary .categoryButtonSub {
+    color: rgba(112, 70, 74, .7);
+  }
+
+  [data-theme="dark"] #bannerGroup a.categoryButton.secondary {
+    background: linear-gradient(135deg, rgba(62, 29, 39, .94), rgba(35, 22, 30, .94));
+    color: #f5c3c2;
+  }
+}
+
+/* Give the native link page the same restrained depth as the home entries. */
+body[data-type="link"] #flink-banners {
+  background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,240,236,.72)), url('/img/journal-cover.svg') center 54% / cover no-repeat;
+  box-shadow: 0 18px 40px rgba(88, 44, 49, .12);
+}
+
+body[data-type="link"] #flink-banners .banners-title-big,
+body[data-type="link"] #flink-banners .banners-title-small {
+  text-shadow: 0 2px 10px rgba(69, 34, 41, .16);
+}
+
+body[data-type="link"] #article-container .anzhiyu-flink-list .flink-list-item {
+  border-color: rgba(181, 113, 115, .2);
+  box-shadow: 0 10px 24px rgba(102, 56, 55, .08);
+}
+
+[data-theme="dark"] body[data-type="link"] #flink-banners {
+  background: linear-gradient(135deg, rgba(37, 19, 27, .88), rgba(68, 27, 41, .78)), url('/img/journal-cover.svg') center 54% / cover no-repeat;
+}
+
+[data-theme="dark"] body[data-type="link"] #article-container .anzhiyu-flink-list .flink-list-item {
+  border-color: rgba(228, 93, 105, .25);
+  box-shadow: 0 12px 26px rgba(0,0,0,.2);
+}

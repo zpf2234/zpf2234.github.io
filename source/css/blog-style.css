@@ -1,0 +1,78 @@
+/* An opt-in costume for the same blog; the journal remains the default. */
+body { isolation:isolate; }
+html.style-switching::after { content:''; position:fixed; inset:0; z-index:2000; pointer-events:none; background:linear-gradient(110deg,#f4f4ed 0%,#f4f4eddd 42%,#d9c3ac 100%); transform-origin:center; animation:style-curtain .76s cubic-bezier(.2,.7,.2,1) both; }
+html.style-switching::before { content:''; position:fixed; inset:0; z-index:1999; pointer-events:none; background:radial-gradient(circle at calc(100% - 49px) calc(100% - 49px),#fff8d98c 0,transparent 25%); animation:magic-flash .9s ease-out both; }
+html[data-blog-style=anime].style-switching::after { background:linear-gradient(110deg,#211d2a 0%,#302338e8 48%,#f0cda4 100%); }
+html[data-blog-style=anime].style-switching::before { background:radial-gradient(circle at calc(100% - 49px) calc(100% - 49px),#ffe5b9a8 0,transparent 27%); }
+.anime-backdrop { position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0; transition:opacity 1.1s ease; background-size:cover; background-position:58% center; }
+html[data-anime-ready=true] .anime-backdrop { background-image:linear-gradient(90deg,#171425bd 0%,#21172b4d 58%,#271c3326),linear-gradient(0deg,#171727df,transparent 80%),url('/img/orihime-main.jpg'); }
+html[data-anime-ready=true] .anime-backdrop { animation:anime-backdrop-drift 24s ease-in-out infinite alternate; }
+.motion-paused .anime-backdrop { animation-play-state:paused; }
+html[data-blog-style=anime][data-anime-ready=true] .anime-backdrop { opacity:1; }
+.blog-style-toggle { position:fixed; right:24px; bottom:max(24px,env(safe-area-inset-bottom)); z-index:1100; display:flex; align-items:center; justify-content:center; width:50px; min-width:50px; height:50px; min-height:50px; padding:0; border:1px solid #ffffffb8; border-radius:50%; color:#304b3d; background:#f3f6ece8; -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); box-shadow:inset 0 1px 0 #fff,0 6px 22px #102b2420; font:500 14px/1.4 'Segoe UI','Microsoft YaHei',sans-serif; cursor:pointer; transition:background .4s,color .4s,transform .25s,box-shadow .35s; }
+.blog-style-toggle:hover { transform:translateY(-4px) rotate(4deg); box-shadow:inset 0 1px 0 #fff,0 10px 26px #102b2430,0 0 0 6px #ecd39e22; }
+.blog-style-toggle:active { transform:scale(.97); }
+.blog-style-toggle:focus-visible { outline:2px solid #ddad70; outline-offset:4px; }
+.style-toggle-icon { display:block; width:23px; height:23px; color:#ae9363; filter:drop-shadow(0 2px 4px #a7894c40); transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .35s; }
+.blog-style-toggle:hover .style-toggle-icon { transform:rotate(20deg) scale(1.14); filter:drop-shadow(0 3px 7px #a7894c75); }
+.blog-style-toggle[aria-pressed=true] .style-toggle-icon { transform:rotate(12deg); }
+.style-toggle-label { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.blog-style-toggle[aria-busy=true] .style-toggle-icon { animation:style-loading 1.5s linear infinite; }
+.blog-style-status { position:fixed; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; }
+.magic-burst { position:fixed; left:calc(100vw - 49px); top:calc(100vh - 49px); z-index:2002; width:18px; height:18px; margin:-9px 0 0 -9px; border-radius:50%; background:radial-gradient(circle,#fffdf0 0 13%,#f4ce8c 32%,transparent 68%); box-shadow:0 0 0 1px #fff,0 0 0 10px #edc99452,0 0 0 21px #edc99422; pointer-events:none; animation:magic-burst .95s cubic-bezier(.12,.7,.2,1) both; }
+.magic-burst::before { content:''; position:absolute; inset:-35px; background:conic-gradient(from 0deg,transparent 0 7deg,#f3d49b 8deg 10deg,transparent 11deg 41deg,#f3d49b 42deg 44deg,transparent 45deg 87deg,#f3d49b 88deg 90deg,transparent 91deg 131deg,#f3d49b 132deg 134deg,transparent 135deg 177deg,#f3d49b 178deg 180deg,transparent 181deg 223deg,#f3d49b 224deg 226deg,transparent 227deg 269deg,#f3d49b 270deg 272deg,transparent 273deg 315deg,#f3d49b 316deg 318deg,transparent 319deg); mask:radial-gradient(circle,transparent 0 52%,#000 54% 58%,transparent 60%); animation:magic-rays 1s ease-out both; }
+.magic-burst::after { content:''; position:absolute; inset:-58px; border:1px solid #f2d29a66; border-radius:50%; animation:magic-ring 1.1s ease-out both; }
+/* Keep the theme's existing top/menu controls clear of the new switch. */
+body:not(.journal-page) #rightside { bottom:88px!important; }
+.journal-page .site-footer { padding-bottom:86px; }
+html[data-blog-style=anime] { color-scheme:dark; }
+html[data-blog-style=anime] body.journal-page { --page:#211d2a; --ink:#fff5ee; --muted:#e2d5d8; --rule:#fff3; background:var(--page); }
+html[data-blog-style=anime] .blog-style-toggle { color:#fff2e4; background:#302637d9; border-color:#ffe9c76b; box-shadow:inset 0 1px 0 #fff2,0 6px 22px #0003; }
+html[data-blog-style=anime] .style-toggle-icon { color:#f1cf91; }
+html[data-blog-style=anime] .journal-page .ambient-wash { background:linear-gradient(90deg,#1e192a55,transparent 65%); }
+html[data-blog-style=anime] .journal-page .ambient-wash::after { opacity:0; }
+html[data-blog-style=anime] .journal-page .hello-stage { visibility:hidden; pointer-events:none; }
+html[data-blog-style=anime] .journal-page .hero-copy h1 em { color:#ffd69c; }
+html[data-blog-style=anime] .journal-page .hero-copy { text-shadow:0 2px 24px #17142188; }
+html[data-blog-style=anime] .journal-page .greeting>span:first-child { background:#ffd49b; box-shadow:0 0 12px #ffd49b88; }
+html[data-blog-style=anime] .journal-page .liquid-glass { color:var(--ink); border-color:#ffffff42!important; background:radial-gradient(circle at var(--liquid-x,50%) var(--liquid-y,0%),#ffe8c51c,transparent 65%),linear-gradient(135deg,#292330ad,#231e2da8)!important; box-shadow:inset 0 1px 0 #fff2,0 9px 25px #0002!important; }
+html[data-blog-style=anime] body.journal-page .liquid-glass:hover { box-shadow:inset 0 1px 0 #fff4,0 12px 25px #0003!important; }
+html[data-blog-style=anime] .journal-page .nav-pill a[aria-current],html[data-blog-style=anime] .journal-page .nav-pill a:hover { background:#ffe4bd26!important; border-color:#ffe4bd3b!important; }
+html[data-blog-style=anime] .journal-page .music-controls .music-play { background:#edc9a4; color:#372638; }
+html[data-blog-style=anime] .journal-page .music-bars i { background:#edc9a4; }
+html[data-blog-style=anime] .journal-page .aside-note>span { color:#efcaa9; }
+html[data-blog-style=anime] .journal-page .interest-scene { background:linear-gradient(110deg,#33263cdb,#272131bd); border:1px solid #ffffff24; backdrop-filter:blur(18px); }
+html[data-blog-style=anime] .journal-page .life-copy h2 em,html[data-blog-style=anime] .journal-page .about-main h2 em { color:#efcaa9; }
+html[data-blog-style=anime] .journal-page .about-signature { color:#e2c3af; }
+html[data-blog-style=anime] .journal-page .post-art { filter:saturate(.8) brightness(.83); }
+/* Reading routes use the same preference, independent of their day/night switch. */
+html[data-blog-style=anime][data-theme] { --anzhiyu-background:#211d2a; --anzhiyu-card-bg:#2b2634ed; --anzhiyu-fontcolor:#f7ede8; --anzhiyu-secondtext:#d6c6cd; --anzhiyu-card-border:#ffffff26; --anzhiyu-main:#d9b080; --anzhiyu-theme:#d9b080; --boki-link:#efcaa9; }
+html[data-blog-style=anime] #page-header.post-bg { background-image:url('/img/orihime-main.jpg')!important; background-position:58% 40%; background-size:cover; }
+html[data-blog-style=anime] #page-header #post-top-bg { opacity:0; }
+html[data-blog-style=anime] #page-header.post-bg::before { background:linear-gradient(90deg,#21182bd9,#21182b45)!important; }
+html[data-blog-style=anime] #post,html[data-blog-style=anime] #page,html[data-blog-style=anime] .recent-post-item,html[data-blog-style=anime] .card-widget { backdrop-filter:blur(18px); }
+@keyframes style-loading { to { transform:rotate(360deg); } }
+@keyframes magic-flash { 0% { opacity:0; transform:scale(.7); } 22% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(1.2); } }
+@keyframes magic-burst { 0% { opacity:0; transform:scale(.25); } 25% { opacity:1; transform:scale(1.12); } 100% { opacity:0; transform:scale(.72); } }
+@keyframes magic-rays { from { opacity:0; transform:scale(.2) rotate(-20deg); } 25% { opacity:1; } to { opacity:0; transform:scale(1.1) rotate(28deg); } }
+@keyframes magic-ring { from { opacity:.8; transform:scale(.2); } to { opacity:0; transform:scale(1.25); } }
+@keyframes style-curtain { 0% { opacity:0; transform:scaleX(.2); } 18% { opacity:.88; transform:scaleX(1); } 100% { opacity:0; transform:scaleX(1); } }
+@keyframes anime-backdrop-drift { from { background-position:56% 48%,56% 48%,56% center; } to { background-position:61% 52%,61% 52%,61% center; } }
+@media(max-width:600px) {
+  .blog-style-toggle { right:16px; bottom:max(16px,env(safe-area-inset-bottom)); width:46px; min-width:46px; height:46px; min-height:46px; }
+  .anime-backdrop { background-position:57% center; }
+  html[data-blog-style=anime] .journal-page .hello-stage { height:240px; }
+  html[data-blog-style=anime] .journal-page .hero-copy { align-self:start; }
+}
+@media(prefers-reduced-motion:reduce) { .anime-backdrop,.blog-style-toggle { transition:none; }.blog-style-toggle[aria-busy=true] .style-toggle-icon { animation:none; } }
+@media(prefers-reduced-motion:reduce) { html[data-anime-ready=true] .anime-backdrop { animation:none; } }
+@media(prefers-reduced-motion:reduce) { html.style-switching::after,html.style-switching::before,.magic-burst { display:none; } }
+@supports not (backdrop-filter:blur(1px)) {
+  .blog-style-toggle { background:#f3f6eff7; }
+  html[data-blog-style=anime] .blog-style-toggle { background:#302637f7; }
+  html[data-blog-style=anime] .journal-page .liquid-glass { background:#292330f5!important; }
+}
+@media(prefers-reduced-data:reduce) {
+  .anime-rain,.egg-effects { display:none!important; }
+  .anime-backdrop { background-image:linear-gradient(90deg,#171425dd,#21172b66),url('/img/orihime-main.jpg'); }
+}

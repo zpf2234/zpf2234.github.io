@@ -1,0 +1,17 @@
+- class_name: 常去的地方
+  class_desc: 一些值得慢慢逛的站点。
+  flink_style: anzhiyu
+  link_list:
+    - name: boki 的技术站
+      link: https://zpf2234.github.io
+      avatar: /img/boki-mark.svg
+      descr: 前端、工具和看番时的零碎记录
+      color: '#e7798b'
+      tag: 本站
+      recommend: true
+    - name: GitHub
+      link: https://github.com/zpf2234
+      avatar: https://github.githubassets.com/favicons/favicon.svg
+      descr: 源码、实验和正在折腾的东西
+      color: '#79b7d8'
+      tag: 项目

@@ -1,0 +1,72 @@
+/* Two independent scenes: the blue studio dissolves into Orihime's world. */
+.studio-backdrop {
+  position: absolute; inset: -8%; z-index: -3; pointer-events: none;
+  background: radial-gradient(ellipse at 20% 24%,#eff4efb8,transparent 48%),
+    radial-gradient(ellipse at 82% 70%,#83b4d494,transparent 55%),
+    linear-gradient(135deg,#bbd7e7,#b9ccd7 48%,#dce6e5);
+  transform: translate3d(calc(var(--pointer-x) * -12px),calc(var(--pointer-y) * -9px),0);
+  transition: opacity 1.6s ease;
+}
+.orihime-scene {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  opacity: 0; pointer-events: none; visibility: hidden;
+  transform: scale(1.035); filter: blur(9px);
+  transition: opacity 1.6s cubic-bezier(.22,.61,.36,1), transform 2s cubic-bezier(.22,.61,.36,1), filter 1.6s ease, visibility 0s 1.6s;
+}
+.orihime-parallax {
+  position: absolute; inset: -5%;
+  transform: translate3d(calc(var(--pointer-x) * -24px),calc(var(--pointer-y) * -16px),0);
+}
+.studio-page .orihime-scene .hero-art { filter: none; object-position: 56% center; }
+.studio-page .orihime-scene .hero-art:nth-child(2) { object-position: 50% 43%; }
+.art-revealed .studio-backdrop { opacity: 0; }
+.art-revealed .orihime-scene { opacity: 1; transform: scale(1); filter: blur(0); visibility: visible; transition-delay: .08s,0s,0s,0s; }
+.studio-word, .studio-word:active { cursor: pointer; }
+.studio-page .hero-track .hero-scene { transition: height 1.15s cubic-bezier(.22,.7,.25,1), min-height 1.15s cubic-bezier(.22,.7,.25,1); }
+.studio-page .hero-scene .art-plane { transition: opacity 1.45s ease; }
+.studio-page .hero-art { transition: filter 1.5s ease; }
+.studio-page .hero-wash, .studio-page .hero-frost,
+.studio-page .studio-grid, .studio-page .studio-intro,
+.studio-page .studio-word-wrap, .studio-page .studio-float,
+.studio-page .hero-heading, .studio-page .poem-scene,
+.studio-page .hero-motes, .studio-page .pointer-light {
+  transition: opacity .95s ease, filter 1.05s ease, scale 1.1s cubic-bezier(.22,.7,.25,1), visibility 0s;
+}
+.studio-page .masthead, .studio-page .scene-nav, .studio-page .motion-toggle { transition: opacity .6s ease, filter .8s ease, visibility 0s; }
+.studio-page.art-revealed { overflow: hidden; }
+.studio-page.art-revealed .hero-track .hero-scene { height: 100svh; min-height: 100svh; max-height: none; }
+.studio-page.art-revealed .hero-wash,
+.studio-page.art-revealed .hero-frost,
+.studio-page.art-revealed .pointer-light,
+.studio-page.art-revealed .hero-motes { opacity: 0; visibility: hidden; transition-delay: .15s,0s,0s,1.2s; }
+.studio-page.art-revealed .studio-word-wrap { opacity: 0; filter: blur(18px); scale: 1.16; visibility: hidden; transition-delay: 0s,0s,0s,1.1s; }
+.studio-page.art-revealed .studio-grid,
+.studio-page.art-revealed .studio-intro,
+.studio-page.art-revealed .studio-float,
+.studio-page.art-revealed .hero-heading,
+.studio-page.art-revealed .poem-scene { opacity: 0; filter: blur(9px); scale: 1.035; visibility: hidden; transition-delay: .1s,.1s,.1s,1.2s; pointer-events: none; }
+.studio-page.art-revealed .masthead,
+.studio-page.art-revealed .scene-nav,
+.studio-page.art-revealed .motion-toggle { opacity: 0; filter: blur(5px); visibility: hidden; pointer-events: none; transition-delay: 0s,0s,.8s; }
+.return-to-glass {
+  position: absolute; top: 26px; right: var(--page-gutter); z-index: 110;
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 17px;
+  border: 1px solid #ffffff60; border-radius: 999px; color: white;
+  background: #172a3c66; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 0 #fff3,0 5px 20px #0002;
+  cursor: pointer; font-size: 13px; opacity: 0; pointer-events: none;
+  transition: background .25s,opacity .4s .7s;
+}
+.return-to-glass[hidden] { display: none; }
+.art-revealed .return-to-glass { opacity: 1; pointer-events: auto; }
+.return-to-glass:hover { background: #172a3c99; }
+.return-to-glass .ui-icon { width: 17px; height: 17px; }
+@media (prefers-reduced-motion: reduce) {
+  .orihime-parallax, .studio-backdrop { transform: none; }
+  .studio-page .hero-track .hero-scene,
+  .studio-page .hero-scene .art-plane,
+  .studio-page .hero-art,
+  .studio-page .hero-scene > *,
+  .studio-page .masthead,
+  .studio-page .scene-nav { transition: none !important; }
+}

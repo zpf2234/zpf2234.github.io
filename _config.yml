@@ -1,0 +1,55 @@
+title: boki 的技术站
+subtitle: 开发记录、工具折腾和一点闲聊
+description: 这里放 boki 写过的前端、AI 和建站笔记，也放一些看番时留下的零碎想法。
+keywords: 技术博客,Hexo,前端,AI,二次元,井上织姬
+author: boki
+language: zh-CN
+timezone: Asia/Shanghai
+
+url: https://zpf2234.github.io
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+
+index_generator:
+  path: 'notes'
+  per_page: 6
+  order_by: -date
+
+default_category: 技术笔记
+per_page: 10
+pagination_dir: page
+
+theme: anzhiyu
+
+search:
+  path: /local-search.xml
+  field: post
+  content: true
+  format: html
+
+sitemap:
+  path: sitemap.xml
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
