@@ -10,6 +10,7 @@
   const tracks = [{title:audio.dataset.title || '螺旋', artist:audio.dataset.artist || '', url:null, local:false, lyrics:audio.dataset.lyrics || ''}];
   const modes = ['random', 'single', 'all'], labels = ['随机播放', '单曲循环', '列表循环'];
   let current = 0, version = 0, ready = false, wantPlay = false, message = '', defaultPromise;
+  let directSourceTried = false;
   let mode = 'random', lastVolume = .35;
   function read(key, fallback) { try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; } }
   function save(key, value) { try { localStorage.setItem(key, String(value)); } catch (_) {} }
@@ -33,6 +34,9 @@
     find('.music-restart').disabled = !ready;
     find('.music-prev').disabled = find('.music-next').disabled = tracks.length < 2;
     status.textContent = message || (playing ? '正在播放' : ready ? '点击播放' : '正在加载音乐…');
+  }
+  function showGestureHint(show) {
+    widget.classList.toggle('needs-gesture', show);
   }
   function renderList() {
     list.replaceChildren();
@@ -83,6 +87,14 @@
       ready = true; sync(); progress();
       if (autoplay) start();
     } catch (_) {
+      // A few privacy extensions reject the blob URL created above. Retry
+      // once with the original same-origin URL before showing an error.
+      if (index === 0 && !directSourceTried && audio.dataset.src) {
+        directSourceTried = true;
+        tracks[0].url = audio.dataset.src;
+        defaultPromise = Promise.resolve(audio.dataset.src);
+        return selectTrack(index, autoplay);
+      }
       if (selected !== version) return;
       message = '音频加载失败，可在列表重试或添加本地音乐'; sync();
     }
@@ -144,7 +156,7 @@
     if (tracks.length > first) { find('.music-playlist').open = true; selectTrack(first, true); }
     else { message = tracks.length >= 50 ? '列表最多可添加 50 首' : '请选择可播放的音频文件'; sync(); }
   });
-  audio.addEventListener('play', sync);
+  audio.addEventListener('play', () => { showGestureHint(false); sync(); });
   audio.addEventListener('pause', sync);
   audio.addEventListener('playing', () => { message = ''; sync(); });
   audio.addEventListener('waiting', () => { if (wantPlay) { message = '缓冲中…'; sync(); } });
@@ -162,10 +174,22 @@
     selectTrack(next, true);
   });
   audio.addEventListener('error', () => {
+    if (!directSourceTried && audio.dataset.src && audio.src !== new URL(audio.dataset.src, location.href).href) {
+      directSourceTried = true;
+      tracks[0].url = audio.dataset.src;
+      audio.src = audio.dataset.src;
+      audio.load();
+      ready = true;
+      message = '点击播放';
+      showGestureHint(true);
+      sync(); progress();
+      return;
+    }
     wantPlay = false; message = '音频无法解码，请在列表重试或换一首';
     ready = false; sync(); progress();
   });
   // Buffer the default file so seeking also works on Hexo's non-range preview server.
   // Local files remain object URLs on this page and are never uploaded.
+  showGestureHint(true);
   selectTrack(0, false);
 }());
